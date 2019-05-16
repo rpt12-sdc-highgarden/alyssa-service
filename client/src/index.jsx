@@ -37,7 +37,6 @@ class App extends React.Component {
           reviewPercents: this.calculateBarWidth(book.ratings)
         });
       });
-
   }
 
   averageReviews(total) {
@@ -100,6 +99,5 @@ class App extends React.Component {
 
 ReactDOM.render(
   <App />,
-  // eslint-disable-next-line no-undef
   document.getElementById('description-app')
 );
