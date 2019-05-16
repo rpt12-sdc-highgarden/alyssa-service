@@ -11,7 +11,7 @@
     "build": "webpack -d --watch",
     "seed": "node seed.js",
     "test": "jest --forceExit --detectOpenHandles --maxWorkers=10",
-    "start": "node ./server/server.js"
+    "start": "nodemon ./server/server.js"
   },
   "dependencies": {
     "@babel/preset-env": "^7.4.3",
