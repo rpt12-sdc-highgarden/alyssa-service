@@ -15,6 +15,8 @@ function setup() {
 describe('WelcomeMessage Test Suite', () => {
   it('Should have an image', () => {
     const { wrapper } = setup();
-    expect(wrapper.find('img').exists()).toBe(true);
+    expect(wrapper.findWhere(
+      n => n.type() === 'img' && n.contains('http://eeweb.poly.edu/~yao/EL5123/image/lena_gray.bmp')
+    ));
   });
 });
