@@ -1,3 +1,4 @@
+import React from 'react';
 import { Manager, Reference, Popper } from 'react-popper';
 
 const { styled } = window;
@@ -55,16 +56,16 @@ const StoreDropdown = (props) => {
       </Reference>
       {props.isOpen && (
         <Popper placement="bottom">
-          {({ ref, style, placement, arrowProps }) => (
+          {({ ref, style, placement }) => (
             <Menu ref={ref} style={style} placement={placement}>
               <PurchaseLink href={props.stores.audible}>Audible</PurchaseLink>
-              <br/>
+              <br />
               <PurchaseLink href={props.stores.barnesAndNoble}>Barnes & Noble</PurchaseLink>
-              <br/>
+              <br />
               <PurchaseLink href={props.stores.walmart}>Walmart eBooks</PurchaseLink>
-              <br/>
+              <br />
               <PurchaseLink href={props.stores.apple}>Apple Books</PurchaseLink>
-              <br/>
+              <br />
               <PurchaseLink href={props.stores.google}>Google Play</PurchaseLink>
             </Menu>
           )}

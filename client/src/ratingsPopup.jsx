@@ -1,3 +1,4 @@
+import React from 'react';
 import { Manager, Reference, Popper } from 'react-popper';
 import StarRatings from 'react-star-ratings';
 

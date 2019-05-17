@@ -1,3 +1,4 @@
+import React from 'react';
 import StarRatings from 'react-star-ratings';
 import DescriptionText from './descriptionText';
 import RatingsPopup from './ratingsPopup';
@@ -178,7 +179,7 @@ class Description extends React.Component {
             </PurchaseButton>
             <PurchaseButton>
               <span onMouseEnter={this.toggle} onMouseLeave={this.toggle}>
-                <StoreDropdown isOpen={this.state.isOpen} stores={this.props.links.stores}/>
+                <StoreDropdown isOpen={this.state.isOpen} stores={this.props.links.stores} />
               </span>
             </PurchaseButton>
             <PurchaseButton>
@@ -194,6 +195,6 @@ class Description extends React.Component {
       </div>
     )
   }
-};
+}
 
 export default Description;

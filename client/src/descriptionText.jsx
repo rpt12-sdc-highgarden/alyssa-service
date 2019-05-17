@@ -1,3 +1,5 @@
+import React from 'react';
+
 const { styled } = window;
 
 const DescriptionArea = styled.div`
