@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const fake = require('faker');
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/books', { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/books', { useNewUrlParser: true, useCreateIndex: true });
 
 const bookSchema = mongoose.Schema({
   id: {
