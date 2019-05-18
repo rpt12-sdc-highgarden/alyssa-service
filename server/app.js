@@ -1,6 +1,4 @@
 const express = require('express');
-// bundled with express by default
-// eslint-disable-next-line import/no-extraneous-dependencies
 const bodyParser = require('body-parser');
 const path = require('path');
 const books = require('./database/index.js');
@@ -21,6 +19,15 @@ app.get('/books/:id', (req, res) => {
   books.retrieve(req.params.id, (err, doc) => {
     // add err handling
     res.send(doc);
+  });
+});
+
+app.post('/newbook', (req, res) => {
+  console.log('REQ BODY', req.body);
+  var newBook = new books.Book(req.body);
+  newBook.save((err) => {
+    if (err) console.error(err);
+    res.status(200).send('Saved to db!');
   });
 });
 
