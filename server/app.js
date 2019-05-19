@@ -1,6 +1,4 @@
 const express = require('express');
-// bundled with express by default
-// eslint-disable-next-line import/no-extraneous-dependencies
 const bodyParser = require('body-parser');
 const path = require('path');
 const books = require('./database/index.js');
@@ -19,8 +17,37 @@ app.use(function(req, res, next) {
 
 app.get('/books/:id', (req, res) => {
   books.retrieve(req.params.id, (err, doc) => {
-    // add err handling
-    res.send(doc);
+    if (err) res.status(400).send(err);
+    res.status(200).send(doc);
+  });
+});
+
+app.post('/newbook', (req, res) => {
+  var newBook = new books.Book(req.body);
+  newBook.save((err) => {
+    if (err) res.status(400).send(err);
+    res.status(200).send('Saved to db!');
+  });
+});
+
+app.put('/updatebook/:id', (req, res) => {
+  books.Book.findOne({id: req.params.id}, (err, queriedBook) => {
+    if (err) res.status(400).send(err);
+
+    queriedBook.reviews = queriedBook.reviews += 1;
+
+    var updateBook = new books.Book(queriedBook);
+    updateBook.save((err) => {
+      if (err) res.status(400).send(err);
+      res.status(200).send(`Added +1 review count for ${queriedBook.title}: ${queriedBook}`);
+    });
+  });
+});
+
+app.delete('/deletebook/:id', (req, res) => {
+  books.Book.findOneAndDelete({id: req.params.id}, (err, deletedBook) => {
+    if (err) res.status(400).send(err);
+    res.status(200).send(`Deleted: ${deletedBook}`);
   });
 });
 
