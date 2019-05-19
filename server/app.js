@@ -23,19 +23,19 @@ app.get('/books/:id', (req, res) => {
 });
 
 app.post('/newbook', (req, res) => {
-  console.log('REQ BODY', req.body);
   var newBook = new books.Book(req.body);
   newBook.save((err) => {
-    if (err) console.error(err);
+    if (err) res.status(400).send(err);
     res.status(200).send('Saved to db!');
   });
 });
 
 app.put('/updatebook/:id', (req, res) => {
-  console.log('PUT BODY', req.body);
   books.Book.findOne({id: req.params.id}, (err, queriedBook) => {
-    if (err) console.error(err);
+    if (err) res.status(400).send(err);
+
     queriedBook.reviews = queriedBook.reviews += 1;
+
     var updateBook = new books.Book(queriedBook);
     updateBook.save((err) => {
       if (err) res.status(400).send(err);
