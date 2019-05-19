@@ -44,4 +44,11 @@ app.put('/updatebook/:id', (req, res) => {
   });
 });
 
+app.delete('/deletebook/:id', (req, res) => {
+  books.Book.findOneAndDelete({id: req.params.id}, (err, deletedBook) => {
+    if (err) res.status(400).send(err);
+    res.status(200).send(`Deleted: ${deletedBook}`);
+  });
+});
+
 module.exports = app;
