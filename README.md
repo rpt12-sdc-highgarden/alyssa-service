@@ -41,6 +41,7 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 ## API
 ### GET request to /books/:id
 
+Description: Retrieves all books from the database\
 Sample Output:
 ```
 If unsuccessful: Status code 400 and the error message
@@ -96,7 +97,7 @@ If successful:
 
 ## POST request to /newbook
 
-Description: Adds one book to the database
+Description: Adds one book to the database\
 Sample Output:
 ```
 If unsuccessful: Status code 400 and the error message
@@ -105,7 +106,7 @@ If successful: Status code 200 and string 'Saved to db!'
 
 ## PUT request to /updatebook/:id
 
-Description: Updates a book's number of reviews by +1
+Description: Updates a book's number of reviews by +1\
 Sample Output:
 ```
 If unsuccessful: Status code 400 and the error message
@@ -114,7 +115,7 @@ If successful: Status code 200 and string 'Added +1 review count for [book title
 
 ## DELETE request to /deletebook/:id
 
-Description: Deletes a book
+Description: Deletes a book\
 Sample Output:
 ```
 If unsuccessful: Status code 400 and the error message
