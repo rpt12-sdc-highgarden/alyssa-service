@@ -31,4 +31,17 @@ app.post('/newbook', (req, res) => {
   });
 });
 
+app.put('/updatebook/:id', (req, res) => {
+  console.log('PUT BODY', req.body);
+  books.Book.findOne({id: req.params.id}, (err, queriedBook) => {
+    if (err) console.error(err);
+    queriedBook.reviews = queriedBook.reviews += 1;
+    var updateBook = new books.Book(queriedBook);
+    updateBook.save((err) => {
+      if (err) res.status(400).send(err);
+      res.status(200).send(`Added +1 review count for ${queriedBook.title}: ${queriedBook}`);
+    });
+  });
+});
+
 module.exports = app;
