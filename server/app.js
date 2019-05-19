@@ -17,8 +17,8 @@ app.use(function(req, res, next) {
 
 app.get('/books/:id', (req, res) => {
   books.retrieve(req.params.id, (err, doc) => {
-    // add err handling
-    res.send(doc);
+    if (err) res.status(400).send(err);
+    res.status(200).send(doc);
   });
 });
 
