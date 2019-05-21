@@ -1,6 +1,6 @@
 const mongo = require('./server/database/index.js');
 
 mongo.seed(mongo.Book, () => {
-  console.log('complete')
+  console.log(`Seeding completed on ${Date()}`);
   process.exit(0);
 });
