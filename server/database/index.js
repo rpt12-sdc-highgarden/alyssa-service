@@ -58,6 +58,11 @@ const bookSchema = mongoose.Schema({
 
 const Book = mongoose.model('Book', bookSchema);
 
+//This function is used to generate a number between 0 - 200, inclusive, to generate links from S3 for book images
+const getRandomNumber = (max) => {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
 const seed = (Model, callback) => {
   // clean out current database, if any test records clogging up
   Model.deleteMany({}, async () => {
@@ -106,7 +111,8 @@ const seed = (Model, callback) => {
         isbn13: fake.random.number(),
         language: 'English',
       };
-      book.image = 'http://lorempixel.com/480/640/abstract/';
+      // book.image = 'http://lorempixel.com/480/640/abstract/';
+      book.image = `https://s3-us-west-2.amazonaws.com/sdc-goodreads/book-images/${getRandomNumber(201)}.jpg`;
 
       if (i % 2 === 0) {
         book.series = {
