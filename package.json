@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "webpack -d --watch",
-    "seed": "node seed.js",
+    "seedMongo": "node seedMongoDB.js",
     "test": "jest --forceExit --detectOpenHandles --maxWorkers=10",
     "start": "nodemon ./server/server.js"
   },
@@ -20,6 +20,7 @@
     "enzyme-adapter-react-16": "^1.12.1",
     "express": "^4.16.4",
     "faker": "^4.1.0",
+    "mongodb": "^3.2.6",
     "mongoose": "^5.4.19",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
