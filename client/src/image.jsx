@@ -119,11 +119,9 @@ class Image extends React.Component {
   }
 
   render() {
-    // const image = `https://s3-us-west-2.amazonaws.com/sdc-goodreads/book-images/${this.props.image}.jpg`
 
     return(
       <PreviewWrapper>
-        {/* <BookCover src={image} alt='book cover' /> */}
         <BookCover src={this.props.image} alt='book cover' />
         <ChoiceButton>
           <WantToRead type='button'>Want to Read</WantToRead>
