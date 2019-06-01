@@ -9,8 +9,8 @@
   },
   "scripts": {
     "build": "webpack -d --watch",
-    "seedMongo": "node seedMongoDB.js",
-    "seedMySQL": "node seedMySQL.js",
+    "seedMongo": "node seeding/seedMongoDB.js",
+    "seedMySQL": "node seeding/seedMySQL.js",
     "test": "jest --forceExit --detectOpenHandles --maxWorkers=10",
     "start": "nodemon ./server/server.js"
   },
