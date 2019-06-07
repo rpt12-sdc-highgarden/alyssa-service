@@ -27,7 +27,8 @@ npm install
 
 > For setup, please follow this pattern:
 
-1. `npm run seed` - runs seeding script
+1. Execute schema.sql file
+1. `npm run seedMySQL` - runs seeding script
 2. `npm run build` - compiles webpack into `bundle.js`
 3. `npm start`
 4. Navigate to [localhost:3004](http://localhost:3004)
@@ -38,7 +39,7 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
 - Node 10.15.3
 
-## API
+## API (Using MongoDB)
 ### GET request to /books/:id
 
 Description: Retrieves all books from the database\
