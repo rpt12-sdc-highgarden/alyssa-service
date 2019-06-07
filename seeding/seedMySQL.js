@@ -16,11 +16,10 @@ const getRandomNumber = (max) => {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
-const createBooks = (bookId) => {
+const createBooks = () => {
   const newBooks = [];
   for (let i = 0; i < 10000; i += 1) {
     let book = {};
-    book.id = i + bookId;
     book.title = fake.random.words(3);
     book.author = fake.name.findName();
     book.description = fake.lorem.paragraphs();
@@ -32,6 +31,7 @@ const createBooks = (bookId) => {
     book.reviews = fake.random.number();
     book.kindleLink = fake.internet.url();
     book.amazonLink = fake.internet.url();
+    book.worldcatLink = fake.internet.url();
     //store links
     book.audibleLink = fake.internet.url();
     book.barnesAndNobleLink = fake.internet.url();
@@ -57,20 +57,26 @@ const createBooks = (bookId) => {
 
     book.imageURL = `https://s3-us-west-2.amazonaws.com/sdc-goodreads/book-images/${getRandomNumber(201)}.jpg`;
 
+    if (i % 2 === 0) {
+      book.series_name = fake.random.words(2);
+      book.series_URL = fake.internet.url();
+    } else {
+      book.series_name = null;
+      book.series_URL = null;
+    }
+
     newBooks.push(book);
   }
   return newBooks;
 }
 
 const seed = async () => {
-  var id = 0;
   var chunkSize = 1000;
   console.log(`Seeding started on ${Date()}`);
   for (var i = 0; i < 1000; i++) {
-    var newBooks = createBooks(id);
+    var newBooks = createBooks();
     await knex.batchInsert('books', newBooks, chunkSize)
     .catch((error) => { throw error });
-    id += 10000;
     if (i % 100 === 0) {
       console.log(`Seeded ${i/100}M records`);
     }
