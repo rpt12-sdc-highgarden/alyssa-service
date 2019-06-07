@@ -1,7 +1,8 @@
+require('newrelic');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const books = require('./database/mongoIndex.js');
+const book = require('./database/mySQLIndex.js');
 
 const app = express();
 
@@ -16,38 +17,30 @@ app.use(function(req, res, next) {
 });
 
 app.get('/books/:id', (req, res) => {
-  books.retrieve(req.params.id, (err, doc) => {
+  book.retrieve(req.params.id, (err, doc) => {
     if (err) res.status(400).send(err);
     res.status(200).send(doc);
   });
 });
 
 app.post('/newbook', (req, res) => {
-  var newBook = new books.Book(req.body);
-  newBook.save((err) => {
+  book.save(req.body, (err) => {
     if (err) res.status(400).send(err);
     res.status(200).send('Saved to db!');
   });
 });
 
 app.put('/updatebook/:id', (req, res) => {
-  books.Book.findOne({id: req.params.id}, (err, queriedBook) => {
+  book.updateReviewCount(req.params.id, (err) => {
     if (err) res.status(400).send(err);
-
-    queriedBook.reviews = queriedBook.reviews += 1;
-
-    var updateBook = new books.Book(queriedBook);
-    updateBook.save((err) => {
-      if (err) res.status(400).send(err);
-      res.status(200).send(`Added +1 review count for ${queriedBook.title}: ${queriedBook}`);
-    });
+    res.status(200).send('Review count updated!');
   });
 });
 
 app.delete('/deletebook/:id', (req, res) => {
-  books.Book.findOneAndDelete({id: req.params.id}, (err, deletedBook) => {
+  book.deleteRecord(req.params.id, (err) => {
     if (err) res.status(400).send(err);
-    res.status(200).send(`Deleted: ${deletedBook}`);
+    res.status(200).send('Row deleted!');
   });
 });
 

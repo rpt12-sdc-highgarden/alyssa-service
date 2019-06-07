@@ -1,0 +1,16 @@
+config:
+  target: 'http://localhost:3004'
+  http:
+    pool: 2
+  phases:
+    - duration: 30
+      arrivalRate: 100
+scenarios:
+  - name: 'Look up a book (GET)'
+    flow:
+      - get:
+          url: '/books/{{ $randomNumber(0, 9999999) }}'
+  # - name: 'Add a new book (POST)'
+  #   flow:
+  #     - post:
+  #         url: '/newbook'

@@ -29,3 +29,6 @@ dist/
 example/
 schema.txt
 .zip
+
+# License Key for New Relic
+newrelic_license_key.js

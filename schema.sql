@@ -16,7 +16,7 @@ CREATE DATABASE goodreads;
 USE goodreads;
 
 CREATE TABLE books (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   title TEXT NOT NULL,
   author TEXT,
   description TEXT,
@@ -28,6 +28,7 @@ CREATE TABLE books (
   reviews INT,
   kindleLink TEXT,
   amazonLink TEXT,
+  worldcatLink TEXT,
   audibleLink TEXT,
   barnesAndNobleLink TEXT,
   walmartLink TEXT,
@@ -48,6 +49,8 @@ CREATE TABLE books (
   ISBN13 INT,
   language TEXT,
   imageURL TEXT,
+  series_name TEXT,
+  series_URL TEXT,
   PRIMARY KEY (id)
 );
 

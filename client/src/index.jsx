@@ -18,7 +18,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const bookId = window.location.pathname.split('/')[1] || 0;
+    const bookId = window.location.pathname.split('/')[1] || 1;
 
     fetch(`/books/${bookId}`)
       .then((response) => {
@@ -30,6 +30,37 @@ class App extends React.Component {
         const day = date.toLocaleString('en-us', { day: 'numeric' });
         const year = date.toLocaleDateString('en-us', { year: 'numeric' });
         const publishDate = month + ' ' + day + 'th ' + year;
+        book.ratings = {
+          one: book.oneStar,
+          two: book.twoStar,
+          three: book.threeStar,
+          four: book.fourStar,
+          five: book.fiveStar
+        };
+        book.links = {
+          kindle: book.kindleLink,
+          amazon: book.amazonLink,
+          worldcat: book.worldcatLink,
+          stores: {
+            audible: book.audibleLink,
+            barnesAndNoble: book.barnesAndNobleLink,
+            walmart: book.walmartLink,
+            apple: book.appleLink,
+            google: book.googleLink,
+            abebooks: book.abebooksLink,
+            bookDesository: book.bookDepositoryLink,
+            indigo: book.indigoLink,
+            alibris: book.alibrisLink,
+            betterWorldBooks: book.betterWorldBooksLink,
+            indieBound: book.indieBoundLink
+          }
+        };
+        book.metadata = {
+          originalTitle: book.originalTitle,
+          isbn: book.ISBN,
+          isbn13: book.ISBN13,
+          language: book.language
+        }
         this.setState({
           book: book,
           weightedReviews: this.averageReviews(book.ratings),
@@ -77,7 +108,7 @@ class App extends React.Component {
   render() {
     return (
       <div style={flexStyle}>
-        <Image image={this.state.book.image} />
+        <Image image={this.state.book.imageURL} />
         <Description
           title={this.state.book.title}
           description={this.state.book.description}
