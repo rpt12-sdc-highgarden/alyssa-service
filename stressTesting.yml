@@ -1,16 +1,53 @@
 config:
   target: 'http://localhost:3004'
   http:
-    pool: 2
+    - pool: 100
   phases:
-    - duration: 30
-      arrivalRate: 100
+    - duration: 60
+      arrivalRate: 3
 scenarios:
   - name: 'Look up a book (GET)'
     flow:
-      - get:
-          url: '/books/{{ $randomNumber(0, 9999999) }}'
-  # - name: 'Add a new book (POST)'
-  #   flow:
-  #     - post:
-  #         url: '/newbook'
+      - loop:
+        - get:
+            url: "/books/{{ $randomNumber(1, 10000000) }}"
+        count: 800
+  - name: 'Add a new book (POST)'
+    flow:
+      - post:
+          url: '/newbook'
+          json:
+            title: 'Book Title'
+            author: 'Some Author'
+            description: 'Description of the book'
+            oneStar: 2456
+            twoStar: 3456
+            threeStar: 5675
+            fourStar: 34567
+            fiveStar: 2345
+            reviews: 1789
+            kindleLink: 'http://kindle.com'
+            amazonLink: 'http://amazon.com'
+            worldcatLink: 'http://worldcat.com'
+            audibleLink: 'http://audible.com'
+            barnesAndNobleLink: 'http://barnesandnoble.com'
+            walmartLink: 'http://walmart.com'
+            appleLink:  'http://apple.com'
+            googleLink: 'http://google.com'
+            abebooksLink: 'http://abebooks.com'
+            bookDepositoryLink: 'http://bookdepository.com'
+            indigoLink: 'http://indigo.com'
+            alibrisLink: 'http://alibris.com'
+            betterWorldBooksLink: 'http://betterworldbooks.com'
+            indieBoundLink: 'http://indiebound.com'
+            type: 'Type'
+            pages: 600
+            publishDate: '2019-01-27'
+            publisher: 'Morissette, Cummerata and Larkin'
+            originalTitle: 'This is a New Book!'
+            ISBN: 96556
+            ISBN13: 50300
+            language: 'English'
+            imageURL: 'https://s3-us-west-2.amazonaws.com/sdc-goodreads/book-images/{{ $randomNumber(0, 200) }}.jpg'
+            series_name: 'secret'
+            series_URL: 'http://lucienne.name'
