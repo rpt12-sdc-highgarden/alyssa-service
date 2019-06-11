@@ -20,7 +20,7 @@ class App extends React.Component {
   componentDidMount() {
     const bookId = window.location.pathname.split('/')[1] || 1;
 
-    fetch(`/books/${bookId}`)
+    fetch(`http://localhost:3004/books/${bookId}`)
       .then((response) => {
         return response.json();
       })
