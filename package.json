@@ -12,7 +12,7 @@
     "seedMongo": "node seeding/seedMongoDB.js",
     "seedMySQL": "node seeding/seedMySQL.js",
     "test": "jest --forceExit --detectOpenHandles --maxWorkers=10",
-    "start": "nodemon ./server/server.js"
+    "start": "node ./server/server.js"
   },
   "dependencies": {
     "@babel/preset-env": "^7.4.3",
