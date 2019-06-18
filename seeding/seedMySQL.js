@@ -19,7 +19,7 @@ const getRandomNumber = (max) => {
 
 const createBooks = () => {
   const newBooks = [];
-  for (let i = 0; i < 10000; i += 1) {
+  for (let i = 0; i < 1000; i += 1) {
     let book = {};
     book.title = fake.random.words(3);
     book.author = fake.name.findName();
@@ -74,7 +74,7 @@ const createBooks = () => {
 const seed = async () => {
   var chunkSize = 1000;
   console.log(`Seeding started on ${Date()}`);
-  for (var i = 0; i < 1000; i++) {
+  for (var i = 0; i < 10000; i++) {
     var newBooks = createBooks();
     await knex.batchInsert('books', newBooks, chunkSize)
     .catch((error) => { throw error });
