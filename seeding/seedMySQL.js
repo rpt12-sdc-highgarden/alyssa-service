@@ -30,7 +30,10 @@ const createBooks = () => {
       threeStar: fake.random.number(),
       fourStar: fake.random.number(),
       fiveStar: fake.random.number(),
-
+      reviews: fake.random.number(),
+      kindleLink: fake.internet.url(),
+      amazonLink: fake.internet.url(),
+      worldcatLink: fake.internet.url(),
       //store links
       audibleLink: fake.internet.url(),
       barnesAndNobleLink: fake.internet.url(),
